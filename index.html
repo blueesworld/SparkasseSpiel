@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#111"><title>Sparkasse</title>
+<style>
+:root{--r:#e60000;--g:#9bc472;--t:#fff;--m:#a9a9ae;--gl:rgba(255,255,255,.09);--bd:rgba(255,255,255,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#0c0c0e;color:var(--t);font:16px -apple-system,"SF Pro Text",Segoe UI,sans-serif;overflow:hidden}
+body:before,body:after{content:"";position:fixed;width:340px;height:340px;border-radius:50%;filter:blur(70px);z-index:0;opacity:.55}
+body:before{background:#e60000;top:-120px;left:-100px;animation:f 14s ease-in-out infinite alternate}
+body:after{background:#2b4bff;bottom:-100px;right:-120px;animation:f 18s ease-in-out infinite alternate-reverse}
+@keyframes f{to{transform:translate(90px,110px) scale(1.2)}}
+#app{position:relative;z-index:1;height:100%;max-width:520px;margin:auto;display:flex;flex-direction:column}
+.scr{flex:1;overflow-y:auto;padding:calc(env(safe-area-inset-top) + 14px) 16px 120px;-webkit-overflow-scrolling:touch}
+.glass{background:var(--gl);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--bd);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(255,255,255,.05),0 10px 30px rgba(0,0,0,.35)}
+.card{padding:16px;margin-bottom:14px}
+.row{display:flex;align-items:center;gap:12px}.sp{justify-content:space-between}
+.logo{width:44px;height:44px;border-radius:50%;background:var(--r);display:grid;place-items:center;font-weight:900;font-size:24px;font-style:italic;flex:none;box-shadow:inset 0 2px 4px rgba(255,255,255,.4)}
+.logo.s{width:72px;height:72px;font-size:42px;margin:10px auto}
+.ic{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:20px;flex:none}
+h1{font-size:22px;margin:6px 0 14px;text-align:center}h2{font-size:15px;color:var(--m);margin:18px 4px 8px;font-weight:600}
+.pill{background:rgba(155,196,114,.9);color:#16300a;font-weight:700;padding:6px 14px;border-radius:99px;white-space:nowrap}
+.pill.neg{background:none;color:#fff;padding:0}
+.big{font-size:38px;font-weight:700;color:var(--g);text-align:center}.sm{color:var(--m);font-size:13px}
+input,select{width:100%;padding:16px;margin-bottom:12px;border-radius:16px;border:1px solid var(--bd);background:rgba(0,0,0,.28);color:#fff;font-size:16px;outline:none;backdrop-filter:blur(10px)}
+input:focus,select:focus{border-color:#6aa9ff;box-shadow:0 0 0 3px rgba(106,169,255,.35)}
+label{font-size:12px;color:var(--m);margin:0 6px 4px;display:block}
+.btn{width:100%;padding:16px;border:0;border-radius:99px;background:linear-gradient(180deg,#ff2a2a,#d90000);color:#fff;font-size:17px;font-weight:700;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 20px rgba(230,0,0,.4);margin-top:4px}
+.btn:active{transform:scale(.98)}.btn.g{background:var(--gl);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);border:1px solid var(--bd)}
+.lnk{color:#8ec1ff;text-decoration:underline;text-align:center;display:block;margin:16px;font-weight:600}
+.qa{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}.qa div{flex:none;width:84px;text-align:center;font-size:12.5px;font-weight:600}.qa .ic{width:62px;height:62px;margin:0 auto 6px;font-size:26px;backdrop-filter:blur(20px);border:1px solid var(--bd);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.tab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom) + 10px);width:calc(100% - 28px);max-width:490px;display:flex;padding:8px;border-radius:34px;z-index:5}
+.tab div{flex:1;text-align:center;font-size:11px;font-weight:600;padding:8px 0;border-radius:26px;color:#cfcfd4;transition:.25s}.tab div span{display:block;font-size:22px}
+.tab div.on{background:rgba(255,255,255,.2);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.back{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:22px}
+.dt{color:#d6d6da;margin:20px 4px 8px;font-size:15px}
+.tx .n{font-weight:700;font-size:15px;overflow:hidden;text-overflow:ellipsis}.tx .d{font-size:13px;color:#cfcfd4}.tx .a{text-align:right;margin-top:8px}
+.tog{width:56px;height:32px;border-radius:99px;background:rgba(255,255,255,.18);position:relative;flex:none}.tog:after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;transition:.25s}.tog.on{background:#34c759}.tog.on:after{left:27px}
+#toast{position:fixed;top:calc(env(safe-area-inset-top) + 12px);left:50%;transform:translate(-50%,-120px);padding:12px 20px;z-index:20;transition:.4s;font-weight:600}#toast.show{transform:translate(-50%,0)}
+.x{color:#ff6b6b;font-size:20px;padding:6px}
+.anim{animation:in .35s ease}@keyframes in{from{opacity:0;transform:translateY(12px)}}
+</style></head><body>
+<div id="app"></div><div id="toast" class="glass"></div>
+<script>
+const $=s=>document.querySelector(s),app=$('#app');
+let DB;try{DB=JSON.parse(localStorage.sk||'{}')}catch(e){DB={}}
+DB.users=DB.users||{};
+const save=()=>{try{localStorage.sk=JSON.stringify(DB)}catch(e){}};
+let view='login',tab='start',me=null,adminOpen=false;
+const eur=n=>n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const rnd=n=>Array.from({length:n},()=>Math.floor(Math.random()*10)).join('');
+const fakeIban=()=>'DE'+rnd(2)+'28050100'+rnd(10);
+const fmtI=i=>i.replace(/(.{4})/g,'$1 ').trim();
+const pad=n=>String(n).padStart(2,'0');
+const U=()=>DB.users[me];
+const bal=u=>Math.round((u.base+u.tx.reduce((a,t)=>a+t.amt,0))*100)/100;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
+const logo=c=>`<div class="logo ${c||''}">S</div>`;
+const go=(v,t)=>{view=v;if(t)tab=t;render()};
+
+function render(){
+ let h='';
+ if(view==='login')h=login();else if(view==='reg')h=reg();else{h=`<div class="scr anim">${main()}</div>`+tabbar()}
+ app.innerHTML=h;
+}
+function login(){return `<div class="scr anim"><h1>Anmeldung</h1>${logo('s')}<div style="height:20px"></div>
+<label>Anmeldename</label><input id="ln" autocomplete="off" autocapitalize="off">
+<label>Online-Banking-PIN</label><input id="lp" type="password" inputmode="numeric">
+<div class="row sp" style="margin:6px 4px 18px"><span>Online-Banking-PIN speichern</span><div class="tog" onclick="this.classList.toggle('on')"></div></div>
+<button class="btn" onclick="doLogin()">Anmelden</button>
+<a class="lnk" onclick="go('reg')">Neu hier? Zugang einrichten</a></div>`}
+function reg(){return `<div class="scr anim"><div class="top"><div class="back glass" onclick="go('login')">‹</div></div><h1>Zugang einrichten</h1>${logo('s')}
+<label>Vor- und Nachname</label><input id="rn">
+<label>Anmeldename</label><input id="rl" autocapitalize="off">
+<label>Online-Banking-PIN (min. 4 Ziffern)</label><input id="rp" type="password" inputmode="numeric">
+<label>PIN wiederholen</label><input id="rp2" type="password" inputmode="numeric">
+<label>Aktueller Kontostand in €</label><input id="rb" inputmode="decimal" value="254,12">
+<button class="btn" onclick="doReg()">Registrieren</button></div>`}
+function doReg(){
+ const n=$('#rn').value.trim(),l=$('#rl').value.trim().toLowerCase(),p=$('#rp').value,p2=$('#rp2').value,b=parseFloat($('#rb').value.replace(/\./g,'').replace(',','.'))||0;
+ if(!n||!l)return toast('Bitte alle Felder ausfüllen');
+ if(DB.users[l])return toast('Anmeldename bereits vergeben');
+ if(!/^\d{4,}$/.test(p))return toast('PIN: mindestens 4 Ziffern');
+ if(p!==p2)return toast('PINs stimmen nicht überein');
+ DB.users[l]={name:n,pin:p,iban:fakeIban(),base:b,sav:3689.95,tx:[],admin:true};save();me=l;toast('Willkommen, '+n.split(' ')[0]);go('app','start');
+}
+function doLogin(){
+ const l=$('#ln').value.trim().toLowerCase(),u=DB.users[l];
+ if(!u||u.pin!==$('#lp').value)return toast('Anmeldename oder PIN falsch');
+ me=l;go('app','start');
+}
+function tabbar(){const T=[['start','🏠','Start'],['prod','🗂️','Produkte'],['serv','⭐','Services'],['prof','👤','Profil']];
+ return `<div class="tab glass">${T.map(t=>`<div class="${tab===t[0]&&view==='app'?'on':''}" onclick="adminOpen=false;go('app','${t[0]}')"><span>${t[1]}</span>${t[2]}</div>`).join('')}</div>`}
+function main(){
+ if(view==='konto')return konto();
+ if(tab==='start')return start();
+ if(tab==='prod')return `<h1>Produkte</h1>${acc()}${sav()}`;
+ if(tab==='serv')return adminOpen?admin():serv();
+ return prof();
+}
+const acc=()=>{const u=U();return `<div class="glass card" onclick="go('konto')"><div class="row sp"><b>Konten und Karten</b><span class="pill">${eur(bal(u))}</span></div><hr style="border:0;border-top:1px solid var(--bd);margin:14px 0"><div class="row">${logo()}<div><b style="font-size:18px">LzO GiroStart</b><div class="sm" style="color:#ddd">${fmtI(u.iban)}</div><div class="sm" style="color:#ddd">${u.name}</div></div></div><div class="pill neg" style="text-align:right;color:var(--g);font-size:20px;margin-top:6px">${eur(bal(u))}</div></div>`};
+const sav=()=>{const u=U();return `<div class="glass card"><div class="row sp"><b>Geldanlage</b><span class="pill">${eur(u.sav)}</span></div><hr style="border:0;border-top:1px solid var(--bd);margin:14px 0"><div class="row">${logo()}<div><b style="font-size:18px">KNAX-Sparkassenbuch</b><div class="sm" style="color:#ddd">${fmtI(u.iban.slice(0,12)+rnd(10))}</div></div></div></div>`};
+function start(){const u=U();
+ return `<div class="top"><div class="ic glass">❓</div>${logo()}<div class="ic glass">🔔</div></div>
+ <div class="glass card row" style="border-radius:99px;padding:16px 20px;color:#ccc"><span style="flex:1">Was möchten Sie tun?</span>🎙️</div>
+ <div class="row sp"><h2>Schnellzugriffe</h2><a style="color:#8ec1ff;text-decoration:underline;font-weight:600">Alle anzeigen</a></div>
+ <div class="qa"><div><div class="ic" style="border-color:#e60000">🚀</div>Neu in der App</div><div onclick="toast('Überweisung vorbereitet')"><div class="ic">💶</div>Geld senden</div><div onclick="go('konto')"><div class="ic">🔍</div>Umsätze suchen</div><div><div class="ic">📍</div>Filialen und Geldautomaten</div></div>
+ <div class="row sp" style="margin:22px 8px 12px"><b style="font-size:19px">Gesamtsumme</b><span class="pill" style="font-size:18px">${eur(bal(u)+u.sav)}</span></div>${acc()}${sav()}`}
+function konto(){const u=U(),tx=[...u.tx].sort((a,b)=>b.t-a.t),now=new Date();let last='',h='';
+ tx.forEach(t=>{const d=new Date(t.t),k=d.toDateString()===now.toDateString()?'Heute':`${pad(d.getDate())}.${pad(d.getMonth()+1)}.${d.getFullYear()}`;
+  if(k!==last){h+=`<div class="dt">${k}</div>`;last=k}
+  h+=`<div class="glass card tx" style="margin-bottom:10px"><div class="row"><div class="ic">${t.ic}</div><div style="min-width:0"><div class="n">${t.n}</div><div class="d">${t.s||''}</div></div></div><div class="a"><span class="pill ${t.amt<0?'neg':''}" style="font-size:17px">${t.amt<0?'−':''}${eur(Math.abs(t.amt))}</span></div></div>`});
+ return `<div class="top"><div class="back glass" onclick="go('app','start')">‹</div><div style="text-align:center"><div class="sm" style="font-size:16px;color:#fff">LzO GiroStart</div></div><div style="width:42px"></div></div>
+ <div class="big" style="margin-top:6px">${eur(bal(u))}</div><div class="sm" style="text-align:center;margin-bottom:6px">${fmtI(u.iban)}<br>Gerade aktualisiert</div>
+ <div class="qa" style="margin-top:14px"><div onclick="toast('Überweisung vorbereitet')"><div class="ic">💶</div>Geld senden</div><div><div class="ic">ℹ️</div>Kontodetails</div><div><div class="ic">🔍</div>Umsätze suchen</div><div><div class="ic">🕒</div>Daueraufträge</div></div>
+ ${h||'<div class="sm" style="text-align:center;margin-top:40px">Noch keine Umsätze</div>'}`}
+function serv(){const u=U(),it=[['🧾','Kontoauszüge'],['💳','Karten verwalten'],['🔒','Sicherheit'],['📄','Postfach']];
+ return `<h1>Meine Services</h1>${it.map(i=>`<div class="glass card row" onclick="toast('${i[1]}')" style="padding:14px"><div class="ic">${i[0]}</div><b style="flex:1">${i[1]}</b>›</div>`).join('')}
+ <div class="glass card row" onclick="adminOpen=true;render()" style="padding:14px;border-color:rgba(255,80,80,.6)"><div class="ic" style="background:var(--r)">🛠️</div><b style="flex:1">Admin-Menü</b>›</div>`}
+function admin(){const u=U(),n=new Date(),dv=`${n.getFullYear()}-${pad(n.getMonth()+1)}-${pad(n.getDate())}T${pad(n.getHours())}:${pad(n.getMinutes())}`;
+ const list=[...u.tx].sort((a,b)=>b.t-a.t).slice(0,12).map(t=>`<div class="row sp" style="padding:8px 2px;border-bottom:1px solid var(--bd)"><div style="min-width:0"><div style="font-weight:600;font-size:14px">${t.n}</div><div class="sm">${eur(t.amt)}</div></div><div class="x" onclick="del(${t.id})">✕</div></div>`).join('');
+ return `<div class="top"><div class="back glass" onclick="adminOpen=false;render()">‹</div><b>Admin-Menü</b><div style="width:42px"></div></div>
+ <div class="glass card"><b>Zahlung hinzufügen</b><div style="height:12px"></div>
+ <label>Art</label><select id="at"><option value="card">Kartenzahlung</option><option value="out">Überweisung (gesendet)</option><option value="in">Geldeingang</option><option value="atm">Geldautomat</option></select>
+ <label>Händler / Name</label><input id="an" placeholder="z.B. REWE Markt">
+ <label>Betrag in €</label><input id="aa" inputmode="decimal" placeholder="12,50">
+ <label>Verwendungszweck / Ort</label><input id="as" placeholder="optional">
+ <label>Datum & Uhrzeit</label><input id="ad" type="datetime-local" value="${dv}">
+ <label>IBAN Gegenseite</label><input id="ai" value="${fmtI(fakeIban())}">
+ <button class="btn" onclick="addTx()">Zahlung buchen</button></div>
+ <div class="glass card"><b>Kontostand setzen</b><div style="height:12px"></div><input id="ab" inputmode="decimal" placeholder="${eur(bal(u))}"><button class="btn g" onclick="setBal()">Übernehmen</button></div>
+ <div class="glass card"><b>Letzte Buchungen</b>${list||'<div class="sm" style="margin-top:8px">Keine Buchungen</div>'}</div>`}
+const num=s=>parseFloat(String(s).replace(/\./g,'').replace(',','.'));
+function addTx(){const u=U(),ty=$('#at').value,n=$('#an').value.trim(),a=Math.abs(num($('#aa').value)),s=$('#as').value.trim(),d=new Date($('#ad').value||Date.now());
+ if(!n||!a)return toast('Name und Betrag angeben');
+ const ts=`${pad(d.getDate())}.${pad(d.getMonth()+1)}/${pad(d.getHours())}.${pad(d.getMinutes())}UHR`;
+ const M={card:['💳',-a,'KARTENZAHLUNG '+n.toUpperCase(),ts+' '+(s||'DEUTSCHLAND').toUpperCase()],out:['💶',-a,n,s||'Überweisung'],in:['⬇️',a,n,s||'Gutschrift'],atm:['🏧',-a,'GA NR'+rnd(8)+' BLZ28050100 0',ts+' '+(s||'WILDESHAUSEN').toUpperCase()]}[ty];
+ u.tx.push({id:Date.now(),t:d.getTime(),ic:M[0],amt:M[1],n:M[2],s:M[3],iban:$('#ai').value});save();toast('Zahlung gebucht');render();
+}
+function del(id){const u=U();u.tx=u.tx.filter(t=>t.id!==id);save();render()}
+function setBal(){const u=U(),v=num($('#ab').value);if(isNaN(v))return toast('Ungültiger Betrag');u.base=v-u.tx.reduce((a,t)=>a+t.amt,0);save();toast('Kontostand aktualisiert');render()}
+function prof(){const u=U();return `<h1>Profil</h1><div class="glass card" style="text-align:center">${logo('s')}<b style="font-size:20px">${u.name}</b><div class="sm">@${me}</div><div class="sm" style="margin-top:8px">${fmtI(u.iban)}</div></div>
+ <button class="btn g" onclick="me=null;go('login')">Abmelden</button>`}
+render();
+</script></body></html>
