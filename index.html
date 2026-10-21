@@ -1,53 +1,107 @@
 <!DOCTYPE html>
 <html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#2e2e2e"><title>Sparkasse</title>
+<meta name="theme-color" content="#2d2d2d"><meta name="apple-mobile-web-app-capable" content="yes"><title>Sparkasse</title>
 <style>
-:root{--bg:#1a1a1a;--hd:#2e2e2e;--cd:#2a2a2a;--bd:#4a4a4a;--r:#e60000;--g:#8fbf6a;--m:#b5b5b5}
+:root{--bg:#1a1a1a;--hd:#2d2d2d;--cd:#2b2b2b;--bd:#474747;--r:#e60000;--g:#9cc873;--m:#bdbdbd}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:var(--bg);color:#fff;font:16px -apple-system,"SF Pro Text",Segoe UI,Roboto,sans-serif;overflow:hidden}
-#app{height:100%;max-width:520px;margin:auto;position:relative;background:var(--bg)}
-.scr{position:absolute;inset:0;overflow-y:auto;padding-bottom:120px;-webkit-overflow-scrolling:touch}
-.hd{background:var(--hd);padding:calc(env(safe-area-inset-top) + 14px) 16px 16px;text-align:center}
-.hd .bar{display:flex;align-items:center;justify-content:space-between;min-height:44px}
-.bk{font-size:30px;width:44px;text-align:left;line-height:1}
-.bd{padding:16px}
-.logo{width:44px;height:44px;border-radius:50%;background:var(--r);display:grid;place-items:center;font-weight:900;font-size:24px;font-style:italic;flex:none}
-.logo.l{width:84px;height:84px;font-size:48px;margin:24px auto}
-.ic{width:46px;height:46px;border-radius:50%;background:#3b3b3b;border:1px solid #4d4d4d;display:grid;place-items:center;font-size:20px;flex:none}
-.row{display:flex;align-items:center;gap:12px}.sp{justify-content:space-between}
-.card{background:var(--cd);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:14px}
-.card hr{border:0;border-top:1px solid var(--bd);margin:14px -16px}
-h2{font-size:19px;margin:0}.sm{color:var(--m);font-size:13px}
-.pill{background:var(--g);color:#1d3a0b;font-weight:700;padding:6px 14px;border-radius:99px;white-space:nowrap}
-.pill.n{background:none;color:#fff;padding:0}
-.amt{color:var(--g);font-size:36px;font-weight:700}
-input,select{width:100%;padding:16px;margin-bottom:14px;border-radius:10px;border:1px solid #666;background:#222;color:#fff;font-size:16px;outline:none}
-input:focus,select:focus{border:2px solid #6aa9ff;padding:15px}
-label{font-size:12.5px;color:var(--m);margin:0 4px 5px;display:block}
-.btn{width:100%;padding:16px;border:0;border-radius:99px;background:#ee0000;color:#fff;font-size:17px;font-weight:700;margin-top:4px}
-.btn.g{background:none;border:1px solid #777;margin-top:10px}.btn:active{opacity:.8}
-.lnk{color:#8ec1ff;text-decoration:underline;text-align:center;display:block;margin:20px;font-weight:600}
-.qa{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px}.qa>div{flex:none;width:92px;text-align:center;font-size:13px;font-weight:600}.qa .ic{width:62px;height:62px;margin:0 auto 8px;font-size:26px}
-.dt{color:#ddd;margin:22px 4px 8px}
-.tx .n{font-weight:700;font-size:15px}.tx .d{font-size:13px;color:#ddd;margin-top:2px;overflow-wrap:anywhere}.tx .a{text-align:right;margin-top:6px}
-.tab{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:520px;display:flex;padding:8px 8px calc(env(safe-area-inset-bottom) + 6px);background:rgba(46,46,46,.82);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border-top:1px solid rgba(255,255,255,.12);z-index:5}
-.tab div{flex:1;text-align:center;font-size:11px;font-weight:600;padding:6px 0;color:#c8c8c8;border-radius:14px}.tab div span{display:block;font-size:22px}.tab .on{color:#fff;background:rgba(255,255,255,.12)}
-.tog{width:56px;height:32px;border-radius:99px;background:#555;position:relative;flex:none;transition:.2s}.tog:after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;transition:.2s}.tog.on{background:#34c759}.tog.on:after{left:27px}
-#toast{position:fixed;top:calc(env(safe-area-inset-top) + 10px);left:50%;transform:translate(-50%,-130px);padding:12px 20px;z-index:30;transition:.35s;font-weight:600;background:rgba(60,60,60,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);border-radius:99px;max-width:92%;text-align:center}#toast.show{transform:translate(-50%,0)}
+html{font-size:13.5px}
+html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:-apple-system,"SF Pro Text",Segoe UI,Roboto,sans-serif;overflow:hidden}
+body{font-size:1rem}
+#app{height:100%;max-width:480px;margin:auto;position:relative}
+.scr{position:absolute;inset:0;overflow-y:auto;padding-bottom:6.5rem;-webkit-overflow-scrolling:touch}
+svg{display:block;flex:none}.i{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hd{background:var(--hd);padding:calc(env(safe-area-inset-top) + .5rem) 1rem 1rem;text-align:center}
+.bar{display:flex;align-items:center;justify-content:space-between;min-height:2.8rem}.bar b{font-size:1.15rem;font-weight:600}
+.bk{width:2.8rem;display:flex;align-items:center}
+.bd{padding:1rem}
+.logo{width:2.9rem;height:2.9rem;border-radius:50%;background:var(--r);display:grid;place-items:center;flex:none}
+.logo svg{width:62%;height:62%}.logo.l{width:5rem;height:5rem;margin:1.6rem auto}
+.tc{width:2.8rem;height:2.8rem;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;color:#222}.tc.dash{background:#2b2b2b;border:1.5px dashed #777}.tc.dk{background:#3b3b3b;color:#fff}.tc.r{background:var(--r)}
+.cb{width:2.9rem;height:2.9rem;border-radius:50%;border:1px solid #4f4f4f;background:#3a3a3a;display:grid;place-items:center;flex:none}
+.row{display:flex;align-items:center;gap:.8rem}.sp{justify-content:space-between}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:1rem;margin-bottom:1rem;overflow:hidden}
+.ch{padding:1rem;display:flex;align-items:center;justify-content:space-between}.ch b{font-size:1.2rem;font-weight:600}.ch .row{gap:.6rem}
+.cr{border-top:1px solid var(--bd);padding:1rem}
+.cr b.t{font-size:1.2rem;font-weight:600}.cr .s{font-size:.95rem;color:#e0e0e0;margin-top:.15rem}
+.gr{color:var(--g);font-size:1.25rem;font-weight:500;text-align:right;margin-top:.5rem}
+.sm{color:var(--m);font-size:.9rem}
+.pill{background:var(--g);color:#1d3a0b;font-weight:700;padding:.35rem .9rem;border-radius:99px;white-space:nowrap}.pill.n{background:none;color:#fff;padding:0;font-weight:600}
+.amt{color:var(--g);font-size:2.3rem;font-weight:600;margin:.1rem 0}
+.fld{position:relative;margin-bottom:1rem;border:1px solid #6a6a6a;border-radius:.7rem;background:#222;padding:.55rem .9rem .35rem}
+.fld:focus-within{border:2px solid #6aa9ff;padding:calc(.55rem - 1px) calc(.9rem - 1px) calc(.35rem - 1px);box-shadow:0 0 0 2px rgba(106,169,255,.35)}
+.fld label{display:block;font-size:.85rem;color:#cfcfcf;margin-bottom:.1rem}
+.fld input,.fld select{width:100%;background:none;border:0;outline:0;color:#fff;font-size:1.1rem;padding:.25rem 0 .3rem;font-family:inherit}
+.fld select option{background:#222}
+.btn{width:100%;padding:1rem;border:0;border-radius:99px;background:#ee0000;color:#fff;font-size:1.15rem;font-weight:700;font-family:inherit}
+.btn.g{background:none;border:1px solid #777;margin-top:.7rem}.btn:active{opacity:.8}
+.lnk{color:#fff;text-decoration:underline;text-align:center;display:block;margin:1.4rem;font-weight:600;font-size:1.1rem}
+.tog{width:3.6rem;height:2.1rem;border-radius:99px;background:#3a3a3a;position:relative;flex:none;transition:.2s}.tog:after{content:"";position:absolute;top:.2rem;left:.2rem;width:1.7rem;height:1.7rem;border-radius:50%;background:#fff;transition:.2s}
+.tog:before{content:"";position:absolute;right:.55rem;top:.7rem;width:.75rem;height:.75rem;border:1.5px solid #bbb;border-radius:50%}.tog.on{background:#34c759}.tog.on:after{left:1.7rem}.tog.on:before{display:none}
+.qa{display:flex;gap:.3rem;overflow-x:auto;padding:.3rem 0 .6rem;scrollbar-width:none}.qa::-webkit-scrollbar{display:none}
+.qa>div{flex:none;width:6.6rem;text-align:center;font-size:.95rem;font-weight:600;line-height:1.2}.qa .cb{width:4.4rem;height:4.4rem;margin:0 auto .5rem}
+.tabs{display:flex;gap:.6rem;overflow-x:auto;margin:.8rem 0 1rem;scrollbar-width:none}.tabs span{flex:none;border:1.5px solid #8a8a8a;border-radius:99px;padding:.6rem 1.3rem;font-weight:600;font-size:1.05rem}
+.srch{display:flex;align-items:center;justify-content:space-between;background:#3c3c3c;border-radius:.9rem;padding:1.1rem 1.2rem;color:#d4d4d4;margin-bottom:1.2rem;font-size:1.1rem}
+.ban{background:#8fc9ff;color:#0b2a4a;border-radius:.9rem;padding:1rem;margin-bottom:1.2rem;display:flex;gap:.8rem;font-size:1rem;line-height:1.3}.ban u{font-weight:600;display:block;margin-top:.5rem}
+.dt{color:#e6e6e6;margin:1.4rem .3rem .6rem;font-size:1.05rem}.mh{font-size:1.7rem;font-weight:600;margin:1.8rem .3rem .2rem}
+.tx{padding:1rem;margin-bottom:.8rem}.tx .n{font-weight:700;font-size:1.1rem;overflow-wrap:anywhere}.tx .d{font-size:.95rem;color:#e0e0e0;margin-top:.1rem;overflow-wrap:anywhere}.tx .a{text-align:right;margin-top:.5rem}
+.tab{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:480px;display:flex;padding:.6rem .3rem calc(env(safe-area-inset-bottom) + .4rem);background:rgba(45,45,45,.85);backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);border-top:1px solid rgba(255,255,255,.1);z-index:5}
+.tab div{flex:1;display:flex;flex-direction:column;align-items:center;gap:.25rem;font-size:.82rem;font-weight:600;color:#e6e6e6}.tab .on{color:#fff}.tab .on svg{filter:drop-shadow(0 0 0 #fff)}
+.tab .nb{position:relative}.tab .nb:after{content:"";position:absolute;right:-3px;top:-2px;width:.6rem;height:.6rem;border-radius:50%;background:#4aa3ff}
+#toast{position:fixed;top:calc(env(safe-area-inset-top) + .6rem);left:50%;transform:translate(-50%,-140px);padding:.8rem 1.3rem;z-index:30;transition:.35s;font-weight:600;background:rgba(60,60,60,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);border-radius:99px;max-width:92%;text-align:center}#toast.show{transform:translate(-50%,0)}
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:20;display:flex;align-items:flex-end;justify-content:center}
-.sh{width:100%;max-width:520px;background:rgba(48,48,48,.88);backdrop-filter:blur(28px) saturate(170%);-webkit-backdrop-filter:blur(28px) saturate(170%);border-radius:26px 26px 0 0;padding:22px 16px calc(env(safe-area-inset-bottom) + 20px);border-top:1px solid rgba(255,255,255,.2)}
-.chip{display:inline-block;padding:8px 16px;border-radius:99px;border:1px solid #777;margin-right:8px;font-size:14px;font-weight:600}.chip.on{background:#fff;color:#000}
-.ok{width:96px;height:96px;border-radius:50%;background:var(--g);color:#1d3a0b;display:grid;place-items:center;font-size:52px;margin:40px auto 20px}
-.x{color:#ff6b6b;font-size:20px;padding:6px 10px}
-.kv{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--bd);font-size:15px}.kv span:first-child{color:var(--m)}.kv span:last-child{text-align:right;overflow-wrap:anywhere}
+.sh{width:100%;max-width:480px;background:rgba(48,48,48,.9);backdrop-filter:blur(28px) saturate(170%);-webkit-backdrop-filter:blur(28px) saturate(170%);border-radius:1.6rem 1.6rem 0 0;padding:1.4rem 1rem calc(env(safe-area-inset-bottom) + 1.2rem);border-top:1px solid rgba(255,255,255,.2)}
+.chip{display:inline-block;padding:.5rem 1rem;border-radius:99px;border:1px solid #777;margin-right:.5rem;font-weight:600}.chip.on{background:#fff;color:#000}
+.ok{width:6rem;height:6rem;border-radius:50%;background:var(--g);color:#1d3a0b;display:grid;place-items:center;margin:2.5rem auto 1.2rem}
+.x{color:#ff6b6b;font-size:1.3rem;padding:.3rem .6rem}
+.kv{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--bd);font-size:1rem}.kv span:first-child{color:var(--m)}.kv span:last-child{text-align:right;overflow-wrap:anywhere}
+.sticky{position:sticky;bottom:0;padding:1rem;background:linear-gradient(transparent,var(--bg) 35%)}
 </style></head><body><div id="app"></div><div id="toast"></div>
 <script>
 const $=s=>document.querySelector(s),app=$('#app');
-let DB;try{DB=JSON.parse(localStorage.sk||'{}')}catch(e){DB={}}DB.users=DB.users||{};
-const save=()=>{try{localStorage.sk=JSON.stringify(DB)}catch(e){}};
-let view='login',tab='start',sub=null,arg=null,me=null,q='',flt='all',draft={};
+let DB={};
+try{DB=JSON.parse(localStorage.sk||'null')||{}}catch(e){}
+if(!DB.users){try{if(window.name.startsWith('SK:'))DB=JSON.parse(window.name.slice(3))}catch(e){}}
+DB.users=DB.users||{};
+const save=()=>{const s=JSON.stringify(DB);try{localStorage.sk=s}catch(e){}try{window.name='SK:'+s}catch(e){}};
+let view='login',tab='start',sub=null,arg=null,me=null,q='',flt='all',draft={},H=[],rem=!!DB.rem,col={},ban=1;
 const AN={giro:'LzO GiroStart',sav:'KNAX-Sparkassenbuch'};
+const MO=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const P={
+send:'<rect x="2.5" y="8" width="15" height="11" rx="2.2"/><path d="M13.6 11a2.4 2.4 0 1 0 0 4.2M7 12.3h4.4M7 14h3.8"/><path d="M15.5 2.8h5.7v5.7M21.2 2.8l-6.3 6.3"/>',
+det:'<rect x="2.5" y="3.5" width="16" height="13" rx="2.2"/><path d="M6 7.5h8M6 10.8h5"/><circle cx="17" cy="17" r="4.6" style="fill:var(--ib,#3a3a3a)"/><path d="M17 16.2v3.1M17 14.3v.1"/>',
+srch:'<path d="M3 5.5h8.5M3 10.5h5.5M3 15.5h7.5"/><circle cx="15" cy="12.5" r="5"/><path d="M18.8 16.5L22 20"/>',
+clk:'<rect x="2.5" y="3.5" width="16" height="13" rx="2.2"/><path d="M6 7.5h8M6 10.8h5"/><circle cx="17" cy="17" r="4.6" style="fill:var(--ib,#3a3a3a)"/><path d="M17 14.8v2.5l1.8 1"/>',
+cal:'<rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.8v3.4M16 2.8v3.4M8 14h3"/>',
+home:'<path d="M12 2.8L2.8 10.5V21h6.4v-6.2h5.6V21h6.4V10.5z" fill="currentColor" stroke-width="1.2"/>',
+homeo:'<path d="M12 2.8L2.8 10.5V21h6.4v-6.2h5.6V21h6.4V10.5z"/>',
+prod:'<rect x="6" y="3.5" width="12" height="4" rx="1.4"/><rect x="4" y="8.8" width="16" height="4.6" rx="1.4"/><rect x="2.8" y="14.4" width="18.4" height="6" rx="1.6"/>',
+serv:'<path d="M12 2.8l7.6 3.2v5.6c0 4.6-3.3 8.3-7.6 9.6-4.3-1.3-7.6-5-7.6-9.6V6z"/><path d="M12 8l1.5 3 3.3.4-2.4 2.3.6 3.3-3-1.6-3 1.6.6-3.3-2.4-2.3 3.3-.4z"/>',
+prof:'<circle cx="12" cy="8" r="4.2"/><path d="M3.8 21c.3-4.6 3.6-7 8.2-7s7.9 2.4 8.2 7z"/>',
+help:'<path d="M12 2.8a9.2 9.2 0 1 1-4.5 17.2L3 21l1.2-4.2A9.2 9.2 0 0 1 12 2.8z"/><path d="M9.5 9.6a2.6 2.6 0 1 1 3.9 2.2c-.9.5-1.4 1-1.4 2M12 16.8v.1"/>',
+bell:'<path d="M5.5 17V11a6.5 6.5 0 0 1 13 0v6l1.8 2H3.7zM10 21.5h4"/>',
+mic:'<rect x="9" y="2.8" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.2"/>',
+rock:'<path d="M14.5 3.5c4 0 6 2 6 6-1.8 4.2-5 7.2-9 8.2L7.300 14c.9-4 3.800-7.300 7.200-10.500z"/><circle cx="14.700" cy="9.300" r="1.600"/><path d="M7.300 14l-3.300 1 2.500 2.500M10 17l-1 3.300 3.300-2.500"/>',
+pin:'<path d="M10.500 21s6-5 6-10.500a6 6 0 1 0-12 0C4.500 16 10.500 21 10.500 21z"/><circle cx="10.500" cy="10.500" r="2.300"/><path d="M15 16.500h6M15 19.500h6M16 14h4v6h-4z"/>',
+bk:'<path d="M20.500 12H4.500M10.500 5.800L4.300 12l6.200 6.200"/>',
+up:'<path d="M5 15l7-7 7 7"/>',dn:'<path d="M5 9l7 7 7-7"/>',x:'<path d="M5 5l14 14M19 5L5 19"/>',
+info:'<circle cx="12" cy="12" r="9.500"/><path d="M12 11v6M12 7.500v.1"/>',
+chev:'<path d="M9 5l7 7-7 7"/>',
+cart:'<path d="M2.500 3.500h3l2.200 10.500h10.600l2-7.500H6.500"/><circle cx="9.500" cy="19" r="1.600"/><circle cx="17" cy="19" r="1.600"/>',
+fuel:'<path d="M4 21V4.500A1.500 1.500 0 0 1 5.500 3h7A1.500 1.500 0 0 1 14 4.500V21M3 21h12M4 10h10M14 8l3 2.500v6a1.500 1.500 0 0 0 3 0V8l-2.500-2.500"/>',
+food:'<path d="M7 3v8M4.500 3v5a2.500 2.500 0 0 0 5 0V3M7 11v10M17 21V3c-2.500 1.500-3.500 4.500-3.500 8H17"/>',
+bag:'<path d="M5 8h14l-1 12.500H6zM8.500 8V6.500a3.500 3.500 0 0 1 7 0V8"/>',
+card:'<rect x="2.500" y="5" width="19" height="14" rx="2.500"/><path d="M2.500 10h19M6 15h4"/>',
+atm:'<rect x="4" y="3" width="16" height="18" rx="2"/><rect x="7" y="6" width="10" height="5"/><path d="M8 15h8M8 18h5"/>',
+mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.500 7l8.500 6.500L20.500 7"/>',
+doc:'<path d="M6 2.800h8l5 5V21H6z"/><path d="M14 2.800V8h5M9 12.500h7M9 16h7"/>',
+lock:'<rect x="4.500" y="10.500" width="15" height="10.500" rx="2"/><path d="M8 10.500V7.500a4 4 0 0 1 8 0v3"/>',
+swap:'<path d="M4 8h16l-4-4M20 16H4l4 4"/>',
+chk:'<path d="M4.500 12.500l5 5 10-11" stroke-width="2.500"/>'
+};
+const ico=(n,s=24,st)=>`<svg class="i" width="${s}" height="${s}" viewBox="0 0 24 24" ${st?`style="${st}"`:''}>${P[n]}</svg>`;
+const LG='<svg viewBox="0 0 24 24"><circle cx="12" cy="4.800" r="2.600" fill="#fff"/><path d="M5 9.500H19V12.800H8.500V13.600H19V19.500H5V16.200H15.500V15.400H5Z" fill="#fff"/></svg>';
+const logo=c=>`<div class="logo ${c||''}">${LG}</div>`;
 const eur=n=>n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
 const rnd=n=>Array.from({length:n},()=>Math.floor(Math.random()*10)).join('');
 const fakeIban=()=>'DE'+rnd(2)+'28050100'+rnd(10);
@@ -58,115 +112,136 @@ const U=()=>DB.users[me];
 const bal=a=>{const u=U();return Math.round((u.base[a]+u.tx.filter(t=>t.acc===a).reduce((s,t)=>s+t.amt,0))*100)/100};
 const dstr=d=>`${pad(d.getDate())}.${pad(d.getMonth()+1)}.${d.getFullYear()}`;
 const tstr=d=>`${pad(d.getDate())}.${pad(d.getMonth()+1)}/${pad(d.getHours())}.${pad(d.getMinutes())}UHR`;
+const val=id=>(($('#'+id)||{}).value||'');
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t.h);t.h=setTimeout(()=>t.classList.remove('show'),2400)}
-const logo=c=>`<div class="logo ${c||''}">S</div>`;
-const go=(v,t,s,a)=>{view=v;if(t)tab=t;sub=s||null;arg=a;draft={};q='';flt='all';render()};
-const nav=(s,a)=>{sub=s;arg=a;render()};
-const hd=(t,back)=>`<div class="hd"><div class="bar"><div class="bk" onclick="${back||'nav(null)'}">←</div><b style="font-size:18px">${t}</b><div style="width:44px"></div></div></div>`;
-const val=id=>($('#'+id)||{}).value||'';
+const go=(v,t,s,a)=>{view=v;if(t)tab=t;sub=s||null;arg=a;draft={};q='';flt='all';H=[];render()};
+const nav=(s,a)=>{H.push([sub,arg]);sub=s;arg=a;render()};
+const back=()=>{const p=H.pop()||[null];sub=p[0];arg=p[1];render()};
+const hd=t=>`<div class="hd"><div class="bar"><div class="bk" onclick="back()">${ico('bk',26)}</div><b>${t}</b><div class="bk"></div></div></div>`;
+const fld=(id,l,v,ex)=>`<div class="fld"><label>${l}</label><input id="${id}" value="${v||''}" ${ex||''}></div>`;
+const cat=n=>{n=n.toUpperCase();return /REWE|EDEKA|ALDI|LIDL|NETTO|KAUFLAND|PENNY|DM |ROSSMANN|NORMA/.test(n)?'cart':/SHELL|ARAL|ESSO|TOTAL|JET|AGIP|TANK/.test(n)?'fuel':/MCDON|BURGER|PIZZA|REST|CAFE|CAFÉ|STARBUCKS|DÖNER|DONER|BÄCKER|BAECKER|SUSHI|KFC|SUBWAY|DELI/.test(n)?'food':/AMAZON|PAYPAL|NETFLIX|SPOTIFY|APPLE|GOOGLE|ZALANDO|EBAY|STEAM|OTTO|DISNEY/.test(n)?'bag':'card'};
+function tic(t){const k=t.k;
+ if(k==='bank')return `<div class="tc r">${LG.replace('<svg','<svg width="60%" height="60%"')}</div>`;
+ if(k==='atm')return `<div class="tc" style="color:#1d4f9c">${ico('atm',24)}</div>`;
+ if(k==='card'){const c=cat(t.n);return `<div class="tc" style="color:${{cart:'#2e8b3d',fuel:'#d6761a',food:'#c43a2f',bag:'#2f5fc4',card:'#444'}[c]}">${ico(c,24)}</div>`}
+ if(k==='so')return `<div class="tc dk">${ico('clk',24)}</div>`;
+ if(k==='own')return `<div class="tc dk">${ico('swap',22)}</div>`;
+ return `<div class="tc dash"></div>`}
 
-function standing(){const u=U();if(!u)return;const now=Date.now();let ch=0;
- (u.so||[]).forEach(s=>{while(s.next<=now){u.tx.push({id:s.next+Math.random(),t:s.next,acc:'giro',amt:-s.amt,n:s.name,s:s.zweck||'Dauerauftrag',ic:'🕒',iban:s.iban});const d=new Date(s.next);s.next=new Date(d.getFullYear(),d.getMonth()+1,Math.min(s.day,28),8,0).getTime();ch=1}});
- if(ch)save()}
+function standing(){const u=U(),now=Date.now();let ch=0;
+ (u.so||[]).forEach(s=>{while(s.next<=now){u.tx.push({id:s.next+Math.random(),t:s.next,acc:'giro',amt:-s.amt,n:s.name,s:s.zweck||'Dauerauftrag',k:'so',iban:s.iban});const d=new Date(s.next);s.next=new Date(d.getFullYear(),d.getMonth()+1,Math.min(s.day,28),8,0).getTime();ch=1}});if(ch)save()}
 function render(){
- if(view==='login'){app.innerHTML=`<div class="scr"><div class="hd"><div class="bar"><div class="bk">←</div><b style="font-size:18px">Anmeldung</b><div style="width:44px"></div></div></div><div class="bd">${logo('l')}
- <label>Anmeldename</label><input id="ln" autocomplete="off" autocapitalize="off">
- <label>Online-Banking-PIN</label><input id="lp" type="password" inputmode="numeric">
- <div class="row sp" style="margin:4px 2px 22px"><span>Online-Banking-PIN speichern</span><div class="tog" onclick="this.classList.toggle('on')"></div></div>
- <a class="lnk" onclick="go('reg')">Zugangsdaten vergessen / Neu registrieren</a>
- <button class="btn" onclick="doLogin()">Anmelden</button></div></div>`;return}
- if(view==='reg'){app.innerHTML=`<div class="scr">${hd('Registrieren',"go('login')")}<div class="bd">
- <label>Vor- und Nachname</label><input id="rn"><label>Anmeldename</label><input id="rl" autocapitalize="off">
- <label>Online-Banking-PIN (min. 4 Ziffern)</label><input id="rp" type="password" inputmode="numeric">
- <label>PIN wiederholen</label><input id="rp2" type="password" inputmode="numeric">
- <label>Kontostand Girokonto (€)</label><input id="rb" inputmode="decimal" value="254,12">
- <label>Kontostand Sparkassenbuch (€)</label><input id="rs" inputmode="decimal" value="5500,00">
+ if(view==='login'){const r=DB.rem||{};app.innerHTML=`<div class="scr"><div class="hd"><div class="bar"><div class="bk" onclick="location.reload()">${ico('bk',26)}</div><b>Anmeldung</b><div class="bk"></div></div></div><div class="bd">${logo('l')}
+ ${fld('ln','Anmeldename',r.l,'autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"')}
+ <div class="fld"><label>Online-Banking-PIN</label><input id="lp" type="password" inputmode="numeric" value="${r.p||''}" onkeydown="if(event.key==='Enter')doLogin()"></div>
+ <div class="row sp" style="margin:.2rem .2rem 1rem;font-size:1.1rem"><span>Online-Banking-PIN speichern</span><div class="tog ${rem?'on':''}" onclick="rem=!rem;this.classList.toggle('on')"></div></div>
+ <a class="lnk" onclick="go('reg')">Zugangsdaten vergessen</a></div>
+ <div class="sticky"><button class="btn" onclick="doLogin()">Anmelden</button></div></div>`;return}
+ if(view==='reg'){app.innerHTML=`<div class="scr"><div class="hd"><div class="bar"><div class="bk" onclick="go('login')">${ico('bk',26)}</div><b>Zugang einrichten</b><div class="bk"></div></div></div><div class="bd">
+ ${fld('rn','Vor- und Nachname')}${fld('rl','Anmeldename','','autocapitalize="off" autocorrect="off"')}
+ ${fld('rp','Online-Banking-PIN (min. 4 Ziffern)','','type="password" inputmode="numeric"')}${fld('rp2','PIN wiederholen','','type="password" inputmode="numeric"')}
+ ${fld('rb','Kontostand Girokonto (€)','254,12','inputmode="decimal"')}${fld('rs','Kontostand Sparkassenbuch (€)','5500,00','inputmode="decimal"')}
  <button class="btn" onclick="doReg()">Registrieren</button></div></div>`;return}
  standing();
- app.innerHTML=`<div class="scr" id="sc">${sub?subv():main()}</div>${sub?'':tabbar()}`;
+ app.innerHTML=`<div class="scr">${sub?subv():main()}</div>${sub?'':tabbar()}`;
 }
 function doReg(){const n=val('rn').trim(),l=val('rl').trim().toLowerCase(),p=val('rp');
  if(!n||!l)return toast('Bitte alle Felder ausfüllen');if(DB.users[l])return toast('Anmeldename bereits vergeben');
  if(!/^\d{4,}$/.test(p))return toast('PIN: mindestens 4 Ziffern');if(p!==val('rp2'))return toast('PINs stimmen nicht überein');
- DB.users[l]={name:n,pin:p,iban:fakeIban(),sib:fakeIban(),base:{giro:num(val('rb'))||0,sav:isNaN(num(val('rs')))?5500:num(val('rs'))},tx:[],so:[],lock:false,mail:[{t:Date.now(),h:'Willkommen im Online-Banking',b:'Ihr Zugang wurde erfolgreich eingerichtet.'}]};
- save();me=l;toast('Willkommen, '+n.split(' ')[0]);go('app','start')}
-function doLogin(){const l=val('ln').trim().toLowerCase(),u=DB.users[l];if(!u||u.pin!==val('lp'))return toast('Anmeldename oder PIN falsch');me=l;go('app','start')}
-function tabbar(){return `<div class="tab">${[['start','🏠','Start'],['prod','🗂️','Produkte'],['serv','⭐','Services'],['prof','👤','Profil']].map(t=>`<div class="${tab===t[0]?'on':''}" onclick="go('app','${t[0]}')"><span>${t[1]}</span>${t[2]}</div>`).join('')}</div>`}
-function main(){return tab==='start'?start():tab==='prod'?`<div class="hd"><b style="font-size:18px">Produkte</b></div><div class="bd">${acc()}${sav()}</div>`:tab==='serv'?serv():prof()}
+ const now=new Date(),f=new Date(now.getFullYear(),now.getMonth(),1,8,0),lm=new Date(now.getFullYear(),now.getMonth(),0);
+ const b=num(val('rb')),s=num(val('rs'));
+ DB.users[l]={name:n,pin:p,iban:fakeIban(),sib:fakeIban(),base:{giro:(isNaN(b)?0:b)-0.85,sav:isNaN(s)?5500:s},
+  tx:[{id:f.getTime(),t:f.getTime(),acc:'giro',amt:.85,n:'Abrechnung '+dstr(lm),s:'siehe Anlage...',k:'bank'}],so:[],lock:false,
+  mail:[{t:Date.now(),h:'Willkommen im Online-Banking',b:'Ihr Zugang wurde erfolgreich eingerichtet.'}]};
+ me=l;save();toast('Willkommen, '+n.split(' ')[0]);go('app','start')}
+function doLogin(){const l=val('ln').trim().toLowerCase(),u=DB.users[l];
+ if(!Object.keys(DB.users).length)return toast('Noch kein Zugang vorhanden – bitte registrieren');
+ if(!u||u.pin!==val('lp').trim())return toast('Anmeldename oder PIN falsch');
+ if(rem)DB.rem={l:val('ln').trim(),p:val('lp')};else delete DB.rem;save();me=l;go('app','start')}
+function tabbar(){return `<div class="tab">${[['start','home','Start'],['prod','prod','Produkte'],['serv','serv','Services'],['prof','prof','Profil']].map(t=>`<div class="${tab===t[0]?'on':''}" onclick="go('app','${t[0]}')"><span class="${t[0]==='prod'?'nb':''}">${ico(t[0]==='start'&&tab!=='start'?'home':t[1],26,tab===t[0]?'':'')}</span>${t[2]}</div>`).join('')}</div>`}
+function main(){return tab==='start'?start():tab==='prod'?`<div class="hd"><div class="bar"><div class="bk"></div><b>Produkte</b><div class="bk"></div></div></div><div class="bd">${acc()}${sav()}</div>`:tab==='serv'?serv():prof()}
 const iban=a=>fmtI(a==='giro'?U().iban:U().sib);
-const acc=()=>`<div class="card" onclick="nav('konto','giro')"><div class="row sp"><h2 style="font-size:18px">Konten und Karten</h2><span class="pill">${eur(bal('giro'))}</span></div><hr><div class="row">${logo()}<div><b style="font-size:19px">LzO GiroStart</b><div class="sm" style="color:#ddd">${iban('giro')}<br>${U().name}</div></div></div><div style="text-align:right;color:var(--g);font-size:20px;font-weight:600;margin-top:6px">${eur(bal('giro'))}</div></div>`;
-const sav=()=>`<div class="card" onclick="nav('konto','sav')"><div class="row sp"><h2 style="font-size:18px">Geldanlage</h2><span class="pill">${eur(bal('sav'))}</span></div><hr><div class="row">${logo()}<div><b style="font-size:19px">KNAX-Sparkassenbuch</b><div class="sm" style="color:#ddd">${iban('sav')}</div></div></div><div style="text-align:right;color:var(--g);font-size:20px;font-weight:600;margin-top:6px">${eur(bal('sav'))}</div></div>`;
-const qa=a=>`<div class="qa"><div onclick="draft={from:'${a||'giro'}'};nav('send')"><div class="ic">💶</div>Geld senden</div><div onclick="nav('details','${a||'giro'}')"><div class="ic">📋</div>Kontodetails</div><div onclick="nav('search')"><div class="ic">🔍</div>Umsätze suchen</div><div onclick="nav('so')"><div class="ic">🕒</div>Daueraufträge</div></div>`;
-function start(){return `<div class="hd"><div class="bar"><div class="ic" onclick="toast('Hilfe: 0441 230-0')">?</div>${logo()}<div class="ic" onclick="nav('mail')">🔔</div></div></div><div class="bd">
- <div class="row sp"><b style="font-size:17px">Schnellzugriffe</b><a style="color:#8ec1ff;text-decoration:underline;font-weight:600">Alle anzeigen</a></div>${qa()}
- <div class="row sp" style="margin:16px 6px 14px"><h2>Gesamtsumme</h2><span class="pill" style="font-size:18px">${eur(bal('giro')+bal('sav'))}</span></div>${acc()}${sav()}</div>`}
-function serv(){const I=[['💶','Geld senden',"draft={from:'giro'};nav('send')"],['🔁','Umbuchung',"draft={from:'sav',own:1};nav('send')"],['🕒','Daueraufträge',"nav('so')"],['🧾','Kontoauszüge',"nav('stmt')"],['💳','Karten',"nav('card')"],['📬','Postfach',"nav('mail')"]];
- return `<div class="hd"><b style="font-size:18px">Meine Services</b></div><div class="bd">${I.map(i=>`<div class="card row" onclick="${i[2]}" style="padding:14px"><div class="ic">${i[0]}</div><b style="flex:1">${i[1]}</b>›</div>`).join('')}
- <div class="card row" onclick="nav('admin')" style="padding:14px;border-color:#a33"><div class="ic" style="background:var(--r)">🛠️</div><b style="flex:1">Admin-Menü</b>›</div></div>`}
-function prof(){const u=U();return `<div class="hd"><b style="font-size:18px">Profil</b></div><div class="bd"><div class="card" style="text-align:center">${logo('l')}<b style="font-size:20px">${u.name}</b><div class="sm">@${me}</div></div>
- <div class="card"><label>Neue PIN</label><input id="np" type="password" inputmode="numeric"><button class="btn g" style="margin:0" onclick="chPin()">PIN ändern</button></div>
+const sec=(k,t,a,body)=>`<div class="card"><div class="ch" onclick="col['${k}']=!col['${k}'];render()"><div class="row">${ico(col[k]?'dn':'up',22)}<b>${t}</b></div><span style="color:var(--g);font-size:1.25rem;font-weight:500">${eur(a)}</span></div>${col[k]?'':body}</div>`;
+const arow=(a,s)=>`<div class="cr" onclick="nav('konto','${a}')"><div class="row">${logo()}<div><b class="t">${AN[a]}</b><div class="s">${iban(a)}</div>${s?`<div class="s">${U().name}</div>`:''}</div></div><div class="gr">${eur(bal(a))}</div></div>`;
+const acc=()=>sec('g','Konten und Karten',bal('giro'),arow('giro',1));
+const sav=()=>sec('s','Geldanlage',bal('sav'),arow('sav',0));
+const qa=a=>`<div class="qa"><div onclick="draft={from:'${a||'giro'}'};nav('send')"><div class="cb">${ico('send',30)}</div>Geld senden</div><div onclick="nav('det','${a||'giro'}')"><div class="cb">${ico('det',30)}</div>Kontodetails</div><div onclick="nav('search')"><div class="cb">${ico('srch',30)}</div>Umsätze suchen</div><div onclick="nav('so')"><div class="cb">${ico('clk',30)}</div>Daueraufträge</div><div onclick="toast('Keine Terminüberweisungen vorhanden')"><div class="cb">${ico('cal',30)}</div>Termin­überweisungen</div></div>`;
+function start(){return `<div class="hd"><div class="bar"><div class="cb" style="border:0;background:none" onclick="toast('Hilfe: 0800 5000 000')">${ico('help',30)}</div>${logo()}<div class="cb" style="border:0;background:none;position:relative" onclick="nav('mail')">${ico('bell',30)}<i style="position:absolute;right:.5rem;top:.5rem;width:.75rem;height:.75rem;border-radius:50%;background:#4aa3ff"></i></div></div>
+ <div class="tabs" style="margin:.6rem 0 0"><span>Finanzen</span><span>Immobilien</span><span>Anlegen</span></div></div><div class="bd">
+ <div class="srch" style="margin-top:.4rem"><span>Was möchten Sie tun?</span>${ico('mic',26)}</div>
+ <div class="row sp" style="margin:0 .2rem .4rem"><b style="font-size:1.15rem;font-weight:600">Schnellzugriffe</b><u style="color:#8ec1ff;font-weight:600;font-size:1.1rem">Alle anzeigen</u></div>
+ <div class="qa"><div onclick="nav('mail')"><div class="cb" style="border:2.5px solid;border-color:#e60000 #3a6fd8 #3a6fd8 #e60000;color:#e60000">${ico('rock',30)}</div>Neu in der App</div><div onclick="draft={from:'giro'};nav('send')"><div class="cb">${ico('send',30)}</div>Geld senden</div><div onclick="nav('search')"><div class="cb">${ico('srch',30)}</div>Umsätze suchen</div><div onclick="toast('Filialsuche öffnet im Browser')"><div class="cb">${ico('pin',30)}</div>Filialen und Geldautomaten</div></div>
+ ${ban?`<div class="ban"><span style="flex:none">${ico('info',26)}</span><div style="flex:1">Helfen Sie uns dabei, die App zu verbessern. Wir benötigen Ihre Zustimmung zur Datenerfassung.<u onclick="ban=0;render()">Zustimmen oder ablehnen</u></div><span onclick="ban=0;render()">${ico('x',24)}</span></div>`:''}
+ <div class="row sp" style="margin:1.2rem .3rem 1rem"><b style="font-size:1.25rem;font-weight:600">Gesamtsumme</b><span class="pill" style="font-size:1.25rem;font-weight:600">${eur(bal('giro')+bal('sav'))}</span></div>${acc()}${sav()}</div>`}
+function serv(){const I=[['send','Geld senden',"draft={from:'giro'};nav('send')"],['swap','Umbuchung',"draft={from:'sav',own:1};nav('send')"],['clk','Daueraufträge',"nav('so')"],['doc','Kontoauszüge',"nav('stmt')"],['card','Karten',"nav('card')"],['mail','Postfach',"nav('mail')"]];
+ return `<div class="hd"><div class="bar"><div class="bk"></div><b>Meine Services</b><div class="bk"></div></div></div><div class="bd">${I.map(i=>`<div class="card ch" onclick="${i[2]}"><div class="row"><div class="cb">${ico(i[0],24)}</div><b style="font-size:1.1rem">${i[1]}</b></div>${ico('chev',20)}</div>`).join('')}
+ <div class="card ch" onclick="nav('admin')" style="border-color:#a33"><div class="row"><div class="cb" style="background:var(--r);border:0">${ico('lock',24)}</div><b style="font-size:1.1rem">Admin-Menü</b></div>${ico('chev',20)}</div></div>`}
+function prof(){const u=U();return `<div class="hd"><div class="bar"><div class="bk"></div><b>Profil</b><div class="bk"></div></div></div><div class="bd"><div class="card" style="text-align:center;padding:1rem">${logo('l')}<b style="font-size:1.3rem">${u.name}</b><div class="sm">@${me}</div></div>
+ <div class="card" style="padding:1rem">${fld('np','Neue PIN','','type="password" inputmode="numeric"')}<button class="btn g" style="margin:0" onclick="chPin()">PIN ändern</button></div>
  <button class="btn g" onclick="me=null;go('login')">Abmelden</button><button class="btn g" style="color:#ff6b6b" onclick="if(confirm('Zugang wirklich löschen?')){delete DB.users[me];save();me=null;go('login')}">Zugang löschen</button></div>`}
 function chPin(){const p=val('np');if(!/^\d{4,}$/.test(p))return toast('Mindestens 4 Ziffern');U().pin=p;save();toast('PIN geändert')}
 
-function subv(){return({konto,details,search,send,done,so,stmt,card,mail,admin,tx:txd})[sub]()}
-function txs(list){const now=new Date();let last='',h='';[...list].sort((a,b)=>b.t-a.t).forEach(t=>{const d=new Date(t.t),k=d.toDateString()===now.toDateString()?'Heute':dstr(d);
- if(k!==last){h+=`<div class="dt">${k}</div>`;last=k}
- h+=`<div class="card tx" style="margin-bottom:10px" onclick="nav('tx','${t.id}')"><div class="row"><div class="ic">${t.ic}</div><div style="min-width:0"><div class="n">${t.n}</div><div class="d">${t.s||''}</div></div></div><div class="a"><span class="pill ${t.amt<0?'n':''}" style="font-size:17px">${t.amt<0?'−':''}${eur(Math.abs(t.amt))}</span></div></div>`});
- return h||'<div class="sm" style="text-align:center;margin:40px 0">Keine Umsätze gefunden</div>'}
-function konto(){const a=arg;return `<div class="hd"><div class="bar"><div class="bk" onclick="nav(null)">←</div>${logo()}<div style="width:44px"></div></div><div style="font-size:18px;margin-top:6px">${AN[a]}</div><div class="amt">${eur(bal(a))}</div><div class="sm">Gerade aktualisiert</div></div><div class="bd">${qa(a)}${txs(U().tx.filter(t=>t.acc===a))}</div>`}
-function details(){const a=arg,u=U();return hd('Kontodetails')+`<div class="bd"><div class="card"><div class="kv"><span>Konto</span><span>${AN[a]}</span></div><div class="kv"><span>Inhaber</span><span>${u.name}</span></div><div class="kv"><span>IBAN</span><span>${iban(a)}</span></div><div class="kv"><span>BIC</span><span>BRLADE21LZO</span></div><div class="kv"><span>BLZ</span><span>280 501 00</span></div><div class="kv"><span>Kontostand</span><span>${eur(bal(a))}</span></div></div>
+function subv(){return({konto,det,search,send,done,so,stmt,card,mail,admin,tx:txd})[sub]()}
+function txs(list){const now=new Date();let lk='',lm='',h='';
+ [...list].sort((a,b)=>b.t-a.t).forEach(t=>{const d=new Date(t.t),k=d.toDateString()===now.toDateString()?'Heute':dstr(d),mk=d.getFullYear()*12+d.getMonth();
+  if(mk!==lm){lm=mk;if(mk!==now.getFullYear()*12+now.getMonth())h+=`<div class="mh">${MO[d.getMonth()]} ${d.getFullYear()}</div>`}
+  if(k!==lk){h+=`<div class="dt">${k}</div>`;lk=k}
+  h+=`<div class="card tx" onclick="nav('tx','${t.id}')"><div class="row">${tic(t)}<div style="min-width:0"><div class="n">${t.n}</div><div class="d">${t.s||''}</div></div></div><div class="a"><span class="pill ${t.amt<0?'n':''}" style="font-size:1.1rem">${t.amt<0?'−':''}${eur(Math.abs(t.amt))}</span></div></div>`});
+ return h||'<div class="sm" style="text-align:center;margin:2.5rem 0">Keine Umsätze gefunden</div>'}
+function konto(){const a=arg,o=a==='giro'?'sav':'giro';return `<div class="hd" style="padding-bottom:.6rem"><div class="bar"><div class="bk" onclick="back()">${ico('bk',26)}</div>${logo()}<div class="bk"></div></div><div style="font-size:1.25rem;margin-top:.3rem">${AN[a]}</div><div class="amt">${eur(bal(a))}</div><div class="sm" style="font-size:1rem">Gerade aktualisiert</div>
+ <div class="row" style="justify-content:center;gap:1.2rem;margin:.8rem 0 .2rem;color:#999"><span onclick="arg='${o}';render()">${ico('bk',22)}</span><i style="width:.65rem;height:.65rem;border-radius:50%;background:${a==='giro'?'#fff':'#777'}"></i><i style="width:.65rem;height:.65rem;border-radius:50%;background:${a==='sav'?'#fff':'#777'}"></i><span onclick="arg='${o}';render()" style="transform:scaleX(-1)">${ico('bk',22)}</span></div></div>
+ <div class="bd" style="padding-top:.8rem"><div class="row sp" style="margin:0 .2rem"><b style="font-size:1.15rem;font-weight:600">Schnellzugriffe</b><u style="color:#8ec1ff;font-weight:600;font-size:1.1rem">Alle anzeigen</u></div>${qa(a)}${txs(U().tx.filter(t=>t.acc===a))}</div>`}
+function det(){const a=arg,u=U();return hd('Kontodetails')+`<div class="bd"><div class="card" style="padding:0 1rem"><div class="kv"><span>Konto</span><span>${AN[a]}</span></div><div class="kv"><span>Inhaber</span><span>${u.name}</span></div><div class="kv"><span>IBAN</span><span>${iban(a)}</span></div><div class="kv"><span>BIC</span><span>BRLADE21LZO</span></div><div class="kv"><span>BLZ</span><span>280 501 00</span></div><div class="kv" style="border:0"><span>Kontostand</span><span>${eur(bal(a))}</span></div></div>
  <button class="btn" onclick="navigator.clipboard&&navigator.clipboard.writeText('${a==='giro'?u.iban:u.sib}');toast('IBAN kopiert')">IBAN kopieren</button></div>`}
 function search(){const l=U().tx.filter(t=>t.acc==='giro'&&(flt==='all'||(flt==='in'?t.amt>0:t.amt<0))&&(t.n+' '+(t.s||'')+' '+t.amt).toLowerCase().includes(q.toLowerCase()));
- return hd('Umsätze suchen')+`<div class="bd"><input id="sq" placeholder="Suchbegriff" value="${q}" oninput="q=this.value;const p=this.selectionStart;render();const e=$('#sq');e.focus();e.setSelectionRange(p,p)">
- <div style="margin-bottom:6px">${[['all','Alle'],['in','Eingänge'],['out','Ausgänge']].map(c=>`<span class="chip ${flt===c[0]?'on':''}" onclick="flt='${c[0]}';render()">${c[1]}</span>`).join('')}</div>${txs(l)}</div>`}
-function txd(){const t=U().tx.find(x=>String(x.id)===String(arg));if(!t)return hd('Umsatz')+'';const d=new Date(t.t);
- return hd('Umsatzdetails',"nav(null)")+`<div class="bd"><div class="card" style="text-align:center"><div class="ic" style="margin:0 auto 10px">${t.ic}</div><b>${t.n}</b><div style="font-size:32px;font-weight:700;margin-top:8px;color:${t.amt<0?'#fff':'var(--g)'}">${t.amt<0?'−':'+'}${eur(Math.abs(t.amt))}</div></div>
- <div class="card"><div class="kv"><span>Buchungsdatum</span><span>${dstr(d)}</span></div><div class="kv"><span>Uhrzeit</span><span>${pad(d.getHours())}:${pad(d.getMinutes())}</span></div><div class="kv"><span>Verwendungszweck</span><span>${t.s||'–'}</span></div>${t.iban?`<div class="kv"><span>IBAN</span><span>${fmtI(t.iban.replace(/\s/g,''))}</span></div>`:''}<div class="kv"><span>Konto</span><span>${AN[t.acc]}</span></div></div></div>`}
+ return hd('Umsätze suchen')+`<div class="bd"><div class="fld"><label>Suchbegriff</label><input id="sq" value="${q}" oninput="q=this.value;const p=this.selectionStart;render();const e=$('#sq');e.focus();e.setSelectionRange(p,p)"></div>
+ <div>${[['all','Alle'],['in','Eingänge'],['out','Ausgänge']].map(c=>`<span class="chip ${flt===c[0]?'on':''}" onclick="flt='${c[0]}';render()">${c[1]}</span>`).join('')}</div>${txs(l)}</div>`}
+function txd(){const t=U().tx.find(x=>String(x.id)===String(arg));if(!t)return hd('Umsatz');const d=new Date(t.t);
+ return hd('Umsatzdetails')+`<div class="bd"><div class="card" style="text-align:center;padding:1.3rem"><div style="display:flex;justify-content:center;margin-bottom:.7rem">${tic(t)}</div><b style="font-size:1.1rem">${t.n}</b><div style="font-size:2rem;font-weight:600;margin-top:.5rem;color:${t.amt<0?'#fff':'var(--g)'}">${t.amt<0?'−':'+'}${eur(Math.abs(t.amt))}</div></div>
+ <div class="card" style="padding:0 1rem"><div class="kv"><span>Buchungsdatum</span><span>${dstr(d)}</span></div><div class="kv"><span>Uhrzeit</span><span>${pad(d.getHours())}:${pad(d.getMinutes())}</span></div><div class="kv"><span>Verwendungszweck</span><span>${t.s||'–'}</span></div>${t.iban?`<div class="kv"><span>IBAN</span><span>${fmtI(t.iban.replace(/\s/g,''))}</span></div>`:''}<div class="kv" style="border:0"><span>Konto</span><span>${AN[t.acc]}</span></div></div></div>`}
 
-function send(){const D=draft,from=D.from||'giro',own=D.own;
- return hd('Geld senden')+`<div class="bd"><label>Von</label><select id="sf" onchange="draft.from=this.value;save2();render()">${['giro','sav'].map(a=>`<option value="${a}" ${a===from?'selected':''}>${AN[a]} · ${eur(bal(a))}</option>`).join('')}</select>
- <label>An</label><select id="so" onchange="save2();draft.own=this.value==='own';render()"><option value="ext">Anderer Empfänger</option><option value="own" ${own||from==='sav'?'selected':''}>Eigenes Konto (${AN[from==='giro'?'sav':'giro']})</option></select>
- ${own||from==='sav'?'':`<label>Name des Empfängers</label><input id="sn" value="${D.n||''}"><label>IBAN</label><input id="si" value="${D.i||''}" placeholder="DE00 0000 0000 0000 0000 00">`}
- <label>Betrag (€)</label><input id="sa" inputmode="decimal" value="${D.a||''}"><label>Verwendungszweck</label><input id="sz" value="${D.z||''}">
- <button class="btn" onclick="sendGo()">Weiter</button></div>`}
-function save2(){draft.n=val('sn');draft.i=val('si');draft.a=val('sa');draft.z=val('sz');draft.from=val('sf')||draft.from}
-function sendGo(){save2();const from=draft.from||'giro',own=draft.own||from==='sav',a=Math.abs(num(draft.a));
+function sv(){draft.n=val('sn');draft.i=val('si');draft.a=val('sa');draft.z=val('sz')}
+function send(){const D=draft,from=D.from||'giro',own=D.own||from==='sav';
+ return hd('Geld senden')+`<div class="bd"><div class="fld"><label>Von</label><select id="sf" onchange="sv();draft.from=this.value;if(this.value==='sav')draft.own=1;render()">${['giro','sav'].map(a=>`<option value="${a}" ${a===from?'selected':''}>${AN[a]} · ${eur(bal(a))}</option>`).join('')}</select></div>
+ <div class="fld"><label>An</label><select id="sto" onchange="sv();draft.own=this.value==='own';render()"><option value="ext" ${own?'':'selected'} ${from==='sav'?'disabled':''}>Anderer Empfänger</option><option value="own" ${own?'selected':''}>Eigenes Konto (${AN[from==='giro'?'sav':'giro']})</option></select></div>
+ ${own?'':fld('sn','Name des Empfängers',D.n)+fld('si','IBAN',D.i,'placeholder="DE00 0000 0000 0000 0000 00"')}
+ ${fld('sa','Betrag (€)',D.a,'inputmode="decimal"')}${fld('sz','Verwendungszweck',D.z)}<button class="btn" onclick="sendGo()">Weiter</button></div>`}
+function sendGo(){sv();const from=draft.from||'giro',own=draft.own||from==='sav',a=Math.abs(num(draft.a));
  if(!a)return toast('Bitte Betrag eingeben');if(!own){if(!draft.n.trim())return toast('Empfängername fehlt');if(!/^DE\d{20}$/.test(draft.i.replace(/\s/g,'').toUpperCase()))return toast('IBAN ungültig (DE + 20 Ziffern)')}
  if(bal(from)<a)return toast('Konto nicht ausreichend gedeckt');
  pin(()=>{const u=U(),now=Date.now(),to=from==='giro'?'sav':'giro';
-  if(own){u.tx.push({id:now,t:now,acc:from,amt:-a,n:'Umbuchung auf '+AN[to],s:draft.z||'Eigenübertrag',ic:'🔁'},{id:now+1,t:now,acc:to,amt:a,n:'Umbuchung von '+AN[from],s:draft.z||'Eigenübertrag',ic:'🔁'})}
-  else u.tx.push({id:now,t:now,acc:'giro',amt:-a,n:draft.n.trim(),s:draft.z||'Überweisung',ic:'💶',iban:draft.i.replace(/\s/g,'').toUpperCase()});
-  save();arg={a,own,n:draft.n};nav('done',arg)})}
-function done(){const x=arg;return `<div class="bd" style="text-align:center;padding-top:calc(env(safe-area-inset-top) + 40px)"><div class="ok">✓</div><h2>Überweisung ausgeführt</h2><p class="sm" style="font-size:15px">${eur(x.a)} ${x.own?'wurden umgebucht.':'an '+x.n+' gesendet.'}</p><button class="btn" style="margin-top:30px" onclick="go('app','start')">Fertig</button></div>`}
-function pin(cb){const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class="sh"><h2 style="margin-bottom:6px">Freigabe</h2><div class="sm" style="margin-bottom:14px">Bitte Online-Banking-PIN eingeben</div><input id="pc" type="password" inputmode="numeric" autofocus><button class="btn" id="pk">Freigeben</button><button class="btn g" id="pa">Abbrechen</button></div>`;document.body.appendChild(o);
- $('#pa').onclick=()=>o.remove();$('#pk').onclick=()=>{if($('#pc').value===U().pin){o.remove();cb()}else toast('PIN falsch')}}
+  if(own)u.tx.push({id:now,t:now,acc:from,amt:-a,n:'Umbuchung auf '+AN[to],s:draft.z||'Eigenübertrag',k:'own'},{id:now+1,t:now,acc:to,amt:a,n:'Umbuchung von '+AN[from],s:draft.z||'Eigenübertrag',k:'own'});
+  else u.tx.push({id:now,t:now,acc:'giro',amt:-a,n:draft.n.trim(),s:draft.z||'Überweisung',k:'out',iban:draft.i.replace(/\s/g,'').toUpperCase()});
+  save();const x={a,own,n:draft.n};H=[];sub='done';arg=x;render()})}
+function done(){const x=arg;return `<div class="bd" style="text-align:center;padding-top:calc(env(safe-area-inset-top) + 2rem)"><div class="ok">${ico('chk',54)}</div><h2 style="margin:0;font-size:1.4rem">Überweisung ausgeführt</h2><p class="sm" style="font-size:1.05rem">${eur(x.a)} ${x.own?'wurden umgebucht.':'an '+x.n+' gesendet.'}</p><button class="btn" style="margin-top:2rem" onclick="go('app','start')">Fertig</button></div>`}
+function pin(cb){const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class="sh"><h2 style="margin:0 0 .3rem">Freigabe</h2><div class="sm" style="margin-bottom:1rem">Bitte Online-Banking-PIN eingeben</div><div class="fld"><label>Online-Banking-PIN</label><input id="pc" type="password" inputmode="numeric"></div><button class="btn" id="pk">Freigeben</button><button class="btn g" id="pa">Abbrechen</button></div>`;document.body.appendChild(o);
+ $('#pc').focus();$('#pa').onclick=()=>o.remove();$('#pk').onclick=()=>{if($('#pc').value===U().pin){o.remove();cb()}else toast('PIN falsch')}}
 
 function so(){const u=U(),f=draft.f;
- return hd('Daueraufträge')+`<div class="bd">${u.so.map((s,i)=>`<div class="card"><div class="row sp"><div><b>${s.name}</b><div class="sm">monatlich am ${s.day}. · ${s.zweck||''}</div><div class="sm">Nächste: ${dstr(new Date(s.next))}</div></div><div style="text-align:right"><b>${eur(s.amt)}</b><div class="x" onclick="u2=${i};U().so.splice(${i},1);save();render()">✕</div></div></div></div>`).join('')||'<div class="sm" style="text-align:center;margin:20px 0">Keine Daueraufträge</div>'}
- ${f?`<div class="card"><label>Empfänger</label><input id="dn"><label>IBAN</label><input id="di"><label>Betrag (€)</label><input id="da" inputmode="decimal"><label>Verwendungszweck</label><input id="dz"><label>Tag im Monat (1–28)</label><input id="dd" inputmode="numeric" value="1"><button class="btn" onclick="addSo()">Speichern</button></div>`:`<button class="btn" onclick="draft.f=1;render()">Dauerauftrag anlegen</button>`}</div>`}
+ return hd('Daueraufträge')+`<div class="bd">${u.so.map((s,i)=>`<div class="card tx"><div class="row sp"><div><b>${s.name}</b><div class="d">monatlich am ${s.day}. · ${s.zweck||''}</div><div class="d">Nächste: ${dstr(new Date(s.next))}</div></div><div style="text-align:right"><b>${eur(s.amt)}</b><div class="x" onclick="U().so.splice(${i},1);save();render()">✕</div></div></div></div>`).join('')||'<div class="sm" style="text-align:center;margin:1.5rem 0">Keine Daueraufträge</div>'}
+ ${f?`<div class="card" style="padding:1rem">${fld('dn','Empfänger')}${fld('di','IBAN')}${fld('da','Betrag (€)','','inputmode="decimal"')}${fld('dz','Verwendungszweck')}${fld('dd','Tag im Monat (1–28)','1','inputmode="numeric"')}<button class="btn" onclick="addSo()">Speichern</button></div>`:`<button class="btn" onclick="draft.f=1;render()">Dauerauftrag anlegen</button>`}</div>`}
 function addSo(){const a=Math.abs(num(val('da'))),i=val('di').replace(/\s/g,'').toUpperCase(),d=Math.min(28,Math.max(1,parseInt(val('dd'))||1));
  if(!val('dn')||!a)return toast('Name und Betrag angeben');if(!/^DE\d{20}$/.test(i))return toast('IBAN ungültig');
  const n=new Date();let nx=new Date(n.getFullYear(),n.getMonth(),d,8,0);if(nx<=n)nx=new Date(n.getFullYear(),n.getMonth()+1,d,8,0);
  U().so.push({name:val('dn'),iban:i,amt:a,zweck:val('dz'),day:d,next:nx.getTime()});save();draft={};toast('Dauerauftrag angelegt');render()}
 function stmt(){const m={};U().tx.filter(t=>t.acc==='giro').forEach(t=>{const d=new Date(t.t),k=pad(d.getMonth()+1)+'/'+d.getFullYear();m[k]=m[k]||{i:0,o:0,n:0};m[k][t.amt>0?'i':'o']+=t.amt;m[k].n++});
- return hd('Kontoauszüge')+`<div class="bd">${Object.keys(m).reverse().map(k=>`<div class="card"><div class="row sp"><b>Auszug ${k}</b><span class="sm">${m[k].n} Buchungen</span></div><div class="kv"><span>Eingänge</span><span style="color:var(--g)">${eur(m[k].i)}</span></div><div class="kv" style="border:0"><span>Ausgänge</span><span>${eur(m[k].o)}</span></div></div>`).join('')||'<div class="sm" style="text-align:center;margin:40px 0">Noch keine Auszüge</div>'}</div>`}
-function card(){const u=U(),l=u.lock;return hd('Karten')+`<div class="bd"><div class="card" style="background:linear-gradient(135deg,#c20000,#600);height:190px;position:relative;opacity:${l?.45:1}"><b>Sparkasse</b><div style="position:absolute;bottom:50px;font-size:20px;letter-spacing:2px">•••• •••• •••• ${u.iban.slice(-4)}</div><div style="position:absolute;bottom:18px">${u.name.toUpperCase()}</div></div>
- <div class="card row sp"><div><b>Karte gesperrt</b><div class="sm">${l?'Zahlungen werden abgelehnt':'Karte ist aktiv'}</div></div><div class="tog ${l?'on':''}" onclick="U().lock=!U().lock;save();render()"></div></div></div>`}
-function mail(){const m=U().mail,u=U();return hd('Postfach')+`<div class="bd">${[...m].reverse().map(x=>`<div class="card"><b>${x.h}</b><div class="sm">${dstr(new Date(x.t))}</div><p style="margin:8px 0 0;font-size:15px">${x.b}</p></div>`).join('')}</div>`}
+ return hd('Kontoauszüge')+`<div class="bd">${Object.keys(m).reverse().map(k=>`<div class="card" style="padding:1rem"><div class="row sp"><b>Auszug ${k}</b><span class="sm">${m[k].n} Buchungen</span></div><div class="kv"><span>Eingänge</span><span style="color:var(--g)">${eur(m[k].i)}</span></div><div class="kv" style="border:0"><span>Ausgänge</span><span>${eur(m[k].o)}</span></div></div>`).join('')||'<div class="sm" style="text-align:center;margin:2.5rem 0">Noch keine Auszüge</div>'}</div>`}
+function card(){const u=U(),l=u.lock;return hd('Karten')+`<div class="bd"><div class="card" style="background:linear-gradient(135deg,#d00000,#5a0000);height:11rem;position:relative;opacity:${l?.45:1};padding:1rem"><b>Sparkasse</b><div style="position:absolute;bottom:3.3rem;font-size:1.3rem;letter-spacing:2px">•••• •••• •••• ${u.iban.slice(-4)}</div><div style="position:absolute;bottom:1rem">${u.name.toUpperCase()}</div></div>
+ <div class="card ch"><div><b style="font-size:1.1rem">Karte sperren</b><div class="sm">${l?'Zahlungen werden abgelehnt':'Karte ist aktiv'}</div></div><div class="tog ${l?'on':''}" onclick="U().lock=!U().lock;save();render()"></div></div></div>`}
+function mail(){return hd('Postfach')+`<div class="bd">${[...U().mail].reverse().map(x=>`<div class="card" style="padding:1rem"><b>${x.h}</b><div class="sm">${dstr(new Date(x.t))}</div><p style="margin:.5rem 0 0">${x.b}</p></div>`).join('')}</div>`}
 
 function admin(){const u=U(),n=new Date(),dv=`${n.getFullYear()}-${pad(n.getMonth()+1)}-${pad(n.getDate())}T${pad(n.getHours())}:${pad(n.getMinutes())}`;
- const list=[...u.tx].sort((a,b)=>b.t-a.t).slice(0,10).map(t=>`<div class="row sp kv"><span style="color:#fff;font-weight:600;font-size:14px">${t.n}<br><span class="sm">${eur(t.amt)}</span></span><span class="x" onclick="U().tx=U().tx.filter(x=>x.id!==${t.id});save();render()">✕</span></div>`).join('');
- return hd('Admin-Menü')+`<div class="bd"><div class="card"><b>Zahlung hinzufügen</b><div style="height:12px"></div>
- <label>Art</label><select id="at"><option value="card">Kartenzahlung</option><option value="out">Überweisung (gesendet)</option><option value="in">Geldeingang</option><option value="atm">Geldautomat</option></select>
- <label>Händler / Name</label><input id="an" placeholder="z.B. REWE Markt"><label>Betrag (€)</label><input id="aa" inputmode="decimal" placeholder="12,50">
- <label>Ort / Verwendungszweck</label><input id="as" placeholder="optional"><label>Datum & Uhrzeit</label><input id="ad" type="datetime-local" value="${dv}">
- <label>IBAN Gegenseite</label><div class="row"><input id="ai" value="${fmtI(fakeIban())}"><div class="ic" style="margin-bottom:14px" onclick="$('#ai').value=fmtI(fakeIban())">🎲</div></div><button class="btn" onclick="addTx()">Zahlung buchen</button></div>
- <div class="card"><b>Kontostand setzen</b><div style="height:12px"></div><select id="bk"><option value="giro">${AN.giro}</option><option value="sav">${AN.sav}</option></select><input id="ab" inputmode="decimal" placeholder="Neuer Kontostand"><button class="btn g" style="margin:0" onclick="setBal()">Übernehmen</button></div>
- <div class="card"><b>Letzte Buchungen</b>${list||'<div class="sm" style="margin-top:8px">Keine</div>'}</div></div>`}
+ const list=[...u.tx].sort((a,b)=>b.t-a.t).slice(0,10).map(t=>`<div class="row sp kv"><span style="color:#fff;font-weight:600">${t.n}<br><span class="sm">${eur(t.amt)}</span></span><span class="x" onclick="U().tx=U().tx.filter(x=>x.id!==${t.id});save();render()">✕</span></div>`).join('');
+ return hd('Admin-Menü')+`<div class="bd"><div class="card" style="padding:1rem"><b style="font-size:1.1rem">Zahlung hinzufügen</b><div style="height:.8rem"></div>
+ <div class="fld"><label>Art</label><select id="at"><option value="card">Kartenzahlung</option><option value="out">Überweisung (gesendet)</option><option value="in">Geldeingang</option><option value="atm">Geldautomat</option></select></div>
+ ${fld('an','Händler / Name','','placeholder="z.B. REWE Markt"')}${fld('aa','Betrag (€)','','inputmode="decimal" placeholder="12,50"')}${fld('as','Ort / Verwendungszweck','','placeholder="optional"')}${fld('ad','Datum & Uhrzeit',dv,'type="datetime-local"')}
+ <div class="row"><div style="flex:1">${fld('ai','IBAN Gegenseite',fmtI(fakeIban()))}</div><div class="cb" style="margin-bottom:1rem" onclick="$('#ai').value=fmtI(fakeIban())">${ico('swap',22)}</div></div><button class="btn" onclick="addTx()">Zahlung buchen</button></div>
+ <div class="card" style="padding:1rem"><b style="font-size:1.1rem">Kontostand setzen</b><div style="height:.8rem"></div><div class="fld"><label>Konto</label><select id="bk"><option value="giro">${AN.giro}</option><option value="sav">${AN.sav}</option></select></div>${fld('ab','Neuer Kontostand','','inputmode="decimal"')}<button class="btn g" style="margin:0" onclick="setBal()">Übernehmen</button></div>
+ <div class="card" style="padding:1rem"><b style="font-size:1.1rem">Letzte Buchungen</b>${list||'<div class="sm" style="margin-top:.5rem">Keine</div>'}</div></div>`}
 function addTx(){const u=U(),ty=val('at'),n=val('an').trim(),a=Math.abs(num(val('aa'))),s=val('as').trim(),d=new Date(val('ad')||Date.now());
  if(!n||!a)return toast('Name und Betrag angeben');if(ty==='card'&&u.lock)return toast('Karte ist gesperrt');
- const ts=tstr(d),M={card:['💳',-a,'KARTENZAHLUNG '+n.toUpperCase(),ts+' '+(s||'DEUTSCHLAND').toUpperCase()],out:['💶',-a,n,s||'Überweisung'],in:['⬇️',a,n,s||'Gutschrift'],atm:['🏧',-a,'GA NR'+rnd(8)+' BLZ28050100 0',ts+' '+(s||'WILDESHAUSEN').toUpperCase()]}[ty];
- u.tx.push({id:Date.now(),t:d.getTime(),acc:'giro',ic:M[0],amt:M[1],n:M[2],s:M[3],iban:val('ai').replace(/\s/g,'')});save();toast('Zahlung gebucht');render()}
+ const ts=tstr(d),M={card:['card',-a,n.toUpperCase(),ts+' '+(s||'DEUTSCHLAND').toUpperCase()],out:['out',-a,n,s||'Überweisung'],in:['in',a,n,s||'Gutschrift'],atm:['atm',-a,'GA NR'+rnd(8)+' BLZ28050100 0',ts+' '+(s||'WILDESHAUSEN').toUpperCase()]}[ty];
+ u.tx.push({id:Date.now(),t:d.getTime(),acc:'giro',k:M[0],amt:M[1],n:M[2],s:M[3],iban:val('ai').replace(/\s/g,'')});save();toast('Zahlung gebucht');render()}
 function setBal(){const u=U(),a=val('bk'),v=num(val('ab'));if(isNaN(v))return toast('Ungültiger Betrag');u.base[a]=v-u.tx.filter(t=>t.acc===a).reduce((s,t)=>s+t.amt,0);save();toast('Kontostand aktualisiert');render()}
 render();
 </script></body></html>
